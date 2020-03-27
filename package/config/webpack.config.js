@@ -1,5 +1,5 @@
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const path = require("path")
 
 // We set this in the `build:modules` package.json script
 const esmodules = process.env.BABEL_MODULES === "1";
@@ -17,6 +17,11 @@ module.exports = {
       {
         test: /\.mjs$/,
         type: "javascript/auto"
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: "graphql-tag/loader"
       },
       {
         test: /\.(js|jsx)$/,
