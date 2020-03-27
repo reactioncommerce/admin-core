@@ -9,6 +9,7 @@ module.exports = function (api) {
         [
           "@babel/env",
           {
+            modules: "auto",
             // https://babeljs.io/docs/en/babel-preset-env#targets
             targets: {
               node: "current",
