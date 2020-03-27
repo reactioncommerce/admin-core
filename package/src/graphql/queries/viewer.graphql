@@ -1,0 +1,10 @@
+query getViewer {
+  viewer {
+    _id
+    firstName
+    language
+    lastName
+    name
+    primaryEmailAddress
+  }
+}
