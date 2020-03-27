@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard({ title, plugins }) {
   const history = useHistory();
   const classes = useStyles();
-  const auth = useAuth();
+  const { viewer, logout } = useAuth();
 
   return (
     <Container>
@@ -112,7 +112,7 @@ function Dashboard({ title, plugins }) {
           ))}
           <ListItem
             button
-            onClick={() => auth.logout()}
+            onClick={() => logout()}
             className={classes.listItem}
           >
             <ListItemText
@@ -125,6 +125,7 @@ function Dashboard({ title, plugins }) {
       </Drawer>
       <div style={{ paddingLeft: 320 }}>
         <Typography variant="h1">{title || "Reaction Admin"}</Typography>
+        <Typography variant="h2">Welcome {viewer && viewer.primaryEmailAddress}</Typography>
         <Switch>
           {plugins.map(({ MainComponent, route }, index) => (
             <Route exact path={route} component={MainComponent} key={index} />
