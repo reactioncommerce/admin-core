@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 import {
-  Box,
   Drawer,
   Container,
   List,
@@ -10,8 +9,8 @@ import {
   Typography,
   makeStyles
 } from "@material-ui/core";
-import { Route, Switch, Link, useHistory } from "react-router-dom";
-import useAuth from "./hooks/useAuth";
+import { Route, Switch, useHistory } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const activeClassName = "active";
 
@@ -80,7 +79,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function App({ title, plugins }) {
+/**
+ * App component
+ * @param {Object} props Props
+ * @returns {React.ReactElement} App
+ */
+function Dashboard({ title, plugins }) {
   const history = useHistory();
   const classes = useStyles();
   const auth = useAuth();
@@ -119,7 +123,7 @@ export default function App({ title, plugins }) {
           </ListItem>
         </List>
       </Drawer>
-      <div style={{paddingLeft: 320}}>
+      <div style={{ paddingLeft: 320 }}>
         <Typography variant="h1">{title || "Reaction Admin"}</Typography>
         <Switch>
           {plugins.map(({ MainComponent, route }, index) => (
@@ -128,5 +132,12 @@ export default function App({ title, plugins }) {
         </Switch>
       </div>
     </Container>
-  )
+  );
+}
+
+Dashboard.propTypes = {
+  plugins: PropTypes.arrayOf(PropTypes.object),
+  title: PropTypes.string
 };
+
+export default Dashboard;
