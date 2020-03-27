@@ -1,5 +1,5 @@
 {
-  "name": "@reactioncommerce/admin-core-test",
+  "name": "@reactioncommerce/admin-core",
   "version": "1.0.0",
   "description": "Reaction admin core library testing app",
   "main": "index.js",
@@ -7,8 +7,8 @@
     "build": "./package/bin/reaction-plugin-build",
     "bp": "npm run build && npm run publish",
     "publish": "yalc publish --push",
-    "start": "./package/bin/server.js --port 8081",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "hydra:init": "node ./package/bin/create-hydra-client.js",
+    "start": "./package/bin/server.js --port 8081"
   },
   "bin": {
     "reaction": "./package/bin/server.js",
@@ -33,11 +33,15 @@
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
+    "@jagi/jest-transform-graphql": "^1.0.2",
     "@material-ui/core": "^4.9.7",
     "@material-ui/lab": "^4.0.0-alpha.46",
     "@reactioncommerce/catalyst": "^1.19.1",
     "@reactioncommerce/eslint-config": "^2.1.1",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.1",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-define": "^2.0.0",
     "eslint": "^6.8.0",
@@ -49,8 +53,13 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.3",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^25.1.0",
+    "prop-types": "^15.7.2",
+    "raf": "^3.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.1.2",
@@ -58,26 +67,7 @@
     "rimraf": "^3.0.2",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
-  },
-  "eslintConfig": {
-    "extends": "@reactioncommerce",
-    "globals": {
-      "jasmine": true,
-      "jest/globals": true
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "rules": {
-      "jsx-a11y/label-has-for": "off",
-      "node/no-missing-import": "off",
-      "node/no-missing-require": "off",
-      "node/no-unsupported-features/es-syntax": "off",
-      "node/no-unpublished-import": "off",
-      "node/no-unpublished-require": "off"
-    }
+    "webpack-dev-server": "^3.10.3",
+    "whatwg-fetch": "^3.0.0"
   }
 }
