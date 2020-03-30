@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "npm rum build:app"
+  command = "./bin/build"
 
 [[redirects]]
   from = "/*"
