@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "./package/bin/reaction-plugin-build",
+    "build:app": "webpack --config ./package/config/webpack.prod.js",
     "bp": "npm run build && npm run publish",
     "publish": "yalc publish --push",
     "hydra:init": "node ./package/bin/create-hydra-client.js",
