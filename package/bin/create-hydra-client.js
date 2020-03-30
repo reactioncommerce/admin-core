@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-
+/* eslint-disable node/shebang */
 /* eslint-disable no-console */
+
 const http = require("http");
-// const URL = require("url");
+const { URL } = require("url");
 
 // const missing = [
 //   "OAUTH2_ADMIN_URL",
@@ -10,10 +11,10 @@ const http = require("http");
 //   "ROOT_URL"
 // ].filter((key) => !process.env[key]);
 
-const OAUTH2_ADMIN_HOST = "localhost"
+const OAUTH2_ADMIN_HOST = "localhost";
 const OAUTH2_ADMIN_PORT = 4445;
-const OAUTH2_CLIENT_ID = "reaction-admin-core"
-const ROOT_URL = "http://localhost:8081"
+const OAUTH2_CLIENT_ID = "reaction-admin-core";
+const ROOT_URL = "http://localhost:8081";
 
 // if (missing.length) {
 //   console.error(`ERROR: Missing required environment variables ${missing.join(" ")}`);
@@ -21,9 +22,8 @@ const ROOT_URL = "http://localhost:8081"
 // }
 
 const makeAbsolute = (relativeUrl, baseUrl = ROOT_URL) => {
-  // const url = new URL(relativeUrl, baseUrl);
-  // return url.href;
-  return `${ROOT_URL}${relativeUrl}`;
+  const url = new URL(relativeUrl, baseUrl);
+  return url.href;
 };
 
 /* eslint-disable camelcase */
@@ -71,6 +71,7 @@ const req = http.request(options, (res) => {
       default:
         console.error("ERROR: Could not create hydra client");
         console.error(body);
+        // eslint-disable-next-line no-process-exit
         process.exit(10);
     }
   });
@@ -79,6 +80,7 @@ const req = http.request(options, (res) => {
 req.on("error", (error) => {
   console.error("ERROR: Could not create hydra client");
   console.error(error.message);
+  // eslint-disable-next-line no-process-exit
   process.exit(11);
 });
 
