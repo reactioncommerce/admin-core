@@ -1,13 +1,19 @@
+const fs = require("fs");
 const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 // We set this in the `build:modules` package.json script
 const esmodules = process.env.BABEL_MODULES === "1";
 
+
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
+
 module.exports = {
-  mode: "development",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    // path: path.resolve(__dirname, "dist"),
+    path: resolveApp("dist"),
     publicPath: "/",
     chunkFilename: "[chunkhash]-[name].bundle.js",
     filename: "[hash]-[name].bundle.js"
@@ -80,8 +86,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
-      template: "./package/src/index.html"
+      template: "./src/index.html"
     })
   ]
 };
