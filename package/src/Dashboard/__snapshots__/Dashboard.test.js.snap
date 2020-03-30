@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be true 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
+  >
+    <div
+      class="MuiDrawer-root MuiDrawer-docked"
+    >
+      <div
+        class="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0"
+      >
+        <ul
+          class="MuiList-root MuiList-padding"
+        >
+          <div
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root makeStyles-listItem-6 MuiListItem-gutters MuiListItem-button"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root makeStyles-listItemText-7"
+            >
+              Test 1
+            </div>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </div>
+          <div
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root makeStyles-listItem-6 MuiListItem-gutters MuiListItem-button"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root makeStyles-listItemText-7"
+            >
+              Sign Out
+            </div>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </div>
+        </ul>
+      </div>
+    </div>
+    <div
+      style="padding-left: 320px;"
+    >
+      <h1
+        class="MuiTypography-root MuiTypography-h1"
+      >
+        Test App
+      </h1>
+      <h2
+        class="MuiTypography-root MuiTypography-h2"
+      >
+        Welcome 
+      </h2>
+    </div>
+  </div>
+</DocumentFragment>
+`;
