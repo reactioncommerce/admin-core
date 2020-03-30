@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be true 1`] = `
+<DocumentFragment>
+  <div>
+    <h1>
+      Test App
+    </h1>
+  </div>
+</DocumentFragment>
+`;
