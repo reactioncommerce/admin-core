@@ -7,7 +7,7 @@ const argv = require("minimist")(process.argv.slice(2));
 // use `npm start` command to launch the server.
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
-const config = require("../config/webpack.config.js");
+const config = require("../config/webpack.dev.js");
 
 const port = argv.port || 8080;
 
