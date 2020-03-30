@@ -3,11 +3,8 @@
   "version": "0.0.0-development",
   "description": "Reaction admin core library",
   "scripts": {
-    "prebuild": "rimraf dist/**/*",
     "build": "bin/reaction-plugin-build",
-    "bp": "npm run build && npm run publish",
     "init:hydra": "node bin/create-hydra-client.js",
-    "publish": "yalc publish --push",
     "test": "jest ./src",
     "test:watch": "jest --watch ./src",
     "test:file": "jest --no-cache --watch --coverage=false"
