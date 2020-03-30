@@ -1,46 +1,14 @@
 import { useEffect } from "react";
-import gql from "graphql-tag";
-import { useHistory } from "react-router-dom";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { useReactOidc } from "@axa-fr/react-oidc-context";
 import { setAccessToken } from "../lib/graphql/initApollo";
-// import Logger from "@reactioncommerce/logger";
-
-const viewerQuery = gql`
-query getViewer {
-  viewer {
-    _id
-    firstName
-    language
-    lastName
-    name
-    primaryEmailAddress
-  }
-}
-`;
-
-// let lastLocationChangeUrl = null;
-
-// window.addEventListener("popstate", () => {
-//   lastLocationChangeUrl = document.location.pathname + document.location.search + document.location.hash;
-// });
+import viewerQuery from "../graphql/queries/viewer.graphql";
 
 /**
  * Hook to get user permissions for the App component
  * @return {Object} Permissions
  */
 export default function useAuth() {
-  // const history = useHistory();
-
-  // // This is admittedly not ideal, but the `@axa-fr/react-oidc-context` pkg uses `window.history.pushState`
-  // // directly when we finish the OIDC login flow, and for whatever reason React Router DOM does not pick it
-  // // up. This workaround seems to work reliably: we call React Router's `history.push` with the same URL
-  // // we are already on, and it forces a reload.
-  // if (history && lastLocationChangeUrl) {
-  //   history.push(lastLocationChangeUrl);
-  //   lastLocationChangeUrl = null;
-  // }
-
   const { logout: oidcLogout, oidcUser } = useReactOidc();
 
   const { access_token: accessToken } = oidcUser || {};
@@ -59,7 +27,8 @@ export default function useAuth() {
           // Token is expired or user was deleted from database
           oidcLogout();
         } else {
-          Logger.error(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         }
       }
     }
@@ -74,7 +43,7 @@ export default function useAuth() {
     // This involves redirect, so the page will full refresh at this point
     oidcLogout();
   };
-  console.log(viewerData)
+
   return {
     logout,
     viewer: viewerData ? viewerData.viewer : null
