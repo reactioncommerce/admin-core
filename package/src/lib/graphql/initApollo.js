@@ -1,13 +1,10 @@
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
+// Polyfill fetch
+import "unfetch/polyfill";
 import { HttpLink } from "apollo-link-http";
-// import { WebSocketLink } from "apollo-link-ws";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { getOperationAST } from "graphql";
 
-// const { graphQlApiUrlHttp, graphQlApiUrlWebSocket } = Meteor.settings.public;
-
-const graphQlApiUrlHttp = "http://localhost:3000/graphql"
 
 let sharedClient;
 let token;
@@ -46,56 +43,35 @@ export function setSimpleClientTokenHeader(client) {
   }
 }
 
-const authenticationLink = new ApolloLink((operation, forward) => {
-  if (typeof token === "string") {
-    operation.setContext(() => ({
-      headers: {
-        Authorization: token
-      }
-    }));
-  }
-
-  return forward(operation);
-});
-
-const httpLink = new HttpLink({ uri: graphQlApiUrlHttp });
-
-const standardLink = ApolloLink.from([
-  authenticationLink,
-  httpLink
-]);
-
-let linkWithSubscriptions;
-
-// if (graphQlApiUrlWebSocket && graphQlApiUrlWebSocket.length) {
-//   linkWithSubscriptions = ApolloLink.split(
-//     (operation) => {
-//       const operationAST = getOperationAST(operation.query, operation.operationName);
-//       return !!operationAST && operationAST.operation === "subscription";
-//     },
-//     new WebSocketLink({
-//       uri: graphQlApiUrlWebSocket,
-//       options: {
-//         reconnect: true, // auto-reconnect
-//         connectionParams: {
-//           authToken: localStorage.getItem("Meteor.loginToken")
-//         }
-//       }
-//     }),
-//     standardLink
-//   );
-// }
-
 /**
  * @name initApollo
  * @summary Initializes Apollo Client
  * @returns {Object} New ApolloClient
  */
-export default function initApollo() {
+export default function initApollo({ graphqlApiUrl }) {
   if (sharedClient) return sharedClient;
 
+  const authenticationLink = new ApolloLink((operation, forward) => {
+    if (typeof token === "string") {
+      operation.setContext(() => ({
+        headers: {
+          Authorization: token
+        }
+      }));
+    }
+
+    return forward(operation);
+  });
+
+  const httpLink = new HttpLink({ uri: graphqlApiUrl });
+
+  const standardLink = ApolloLink.from([
+    authenticationLink,
+    httpLink
+  ]);
+
   sharedClient = new ApolloClient({
-    link: linkWithSubscriptions || standardLink,
+    link: standardLink,
     cache: new InMemoryCache()
   });
 
