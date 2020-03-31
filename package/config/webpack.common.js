@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 // We set this in the `build:modules` package.json script
 const esmodules = process.env.BABEL_MODULES === "1";
@@ -86,6 +87,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new Dotenv({
+      path: resolveApp(".env")
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
       template: "./src/index.html"
