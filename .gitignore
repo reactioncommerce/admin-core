@@ -24,7 +24,6 @@ results
 allure-results
 
 dist
-reaction.config.js
 
 coverage/*
 
