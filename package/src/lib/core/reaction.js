@@ -11,17 +11,26 @@ import { plugins } from "./plugins";
  */
 export function Reaction(props) {
   const {
-    graphqlApiUrl,
-    oidcClientId,
-    oidcUrl,
-    rootUrl,
+    config: {
+      PUBLIC_GRAPHQL_API_URL,
+      PUBLIC_OIDC_CLIENT_ID,
+      PUBLIC_OIDC_URL,
+      PUBLIC_ROOT_URL
+    },
     AppComponent,
     DashboardComponent,
     dashboardComponentProps
   } = props;
 
-  const apolloClient = initApollo({ graphqlApiUrl });
-  const authenticationProviderProps = getOidcProps({ oidcClientId, oidcUrl, rootUrl });
+  // Initialize apollo client to be used for the ApolloProvider in the AppComponent
+  const apolloClient = initApollo({ graphqlApiUrl: PUBLIC_GRAPHQL_API_URL });
+
+  // Create OIDC props to be used on the AuthenticationProvider in the AppComponent
+  const authenticationProviderProps = getOidcProps({
+    oidcClientId: PUBLIC_OIDC_CLIENT_ID,
+    oidcUrl: PUBLIC_OIDC_URL,
+    rootUrl: PUBLIC_ROOT_URL
+  });
 
   ReactDOM.render(
     (
