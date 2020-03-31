@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 import React from "react";
 import { Reaction, registerPlugin, App } from "../package/src";
-import config from "./reaction.config";
+import config from "./config";
 
 // Register fake plugins for testing
 registerPlugin(() => ({
@@ -22,5 +22,5 @@ registerPlugin(() => ({
 Reaction({
   AppComponent: App,
   title: "Reaction Admin Core Lib",
-  ...config
+  config
 });
