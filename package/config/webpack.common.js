@@ -88,7 +88,8 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      path: resolveApp(".env")
+      path: resolveApp(".env"),
+      systemvars: true
     }),
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
