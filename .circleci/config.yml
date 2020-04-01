@@ -1,0 +1,89 @@
+version: 2
+
+# The following stanza defines a map named defaults with a variable that may be
+# inserted using the YAML merge (<<: *) key later in the file to save some
+# typing. See http://yaml.org/type/merge.html for details.
+defaults: &defaults
+  environment:
+    CI_SCRIPTS: 'npx --quiet --package @reactioncommerce/ci-scripts@1.6.2'
+
+  docker:
+    - image: circleci/node:12.14.1-stretch
+
+jobs:
+  install-dependencies:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - reaction-v3-node-modules-{{ .Branch }}
+      - run:
+          name: Install NPM dependencies
+          command: (cd packages && npm ci)
+      - save_cache:
+          key: reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+          paths:
+            - package/node_modules
+      - save_cache:
+          key: reaction-v3-node-modules-{{ .Branch }}
+          paths:
+            - package/node_modules
+
+
+  eslint:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - reaction-v3-node-modules-{{ .Branch }}
+      - run:
+          name: Lint JavaScript
+          command: cd package && npm run lint
+
+
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - reaction-v3-node-modules-{{ .Branch }}
+      - run:
+          name: Run Unit Tests
+          command: cd package && npm run test
+
+  publish-npm-package:
+    <<: *defaults
+    dependencies:
+      pre:
+        - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
+    steps:
+      - checkout
+      - run: cd package && npm ci
+      - run: cd package && npm run build
+      - run: cd package && npx semantic-release --branch trunk
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - install-dependencies
+      - lint:
+          requires:
+            - install-dependencies
+      - test:
+          requires:
+            - install-dependencies
+      - publish-npm-package:
+          requires:
+            - lint
+            - test
+          filters:
+            branches:
+              only: trunk
