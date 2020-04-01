@@ -7,14 +7,22 @@ const Dotenv = require("dotenv-webpack");
 // We set this in the `build:modules` package.json script
 const esmodules = process.env.BABEL_MODULES === "1";
 
+// Get the directory this script was called from
+const rootDirectory = fs.realpathSync(process.cwd());
 
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
+/**
+ * Creates a path based on the location the command run from. this is usually this is the base App path.
+ * @param {relativePath} relativePath Relative path based on the base app directory
+ * @returns {String} A new path resolved with the base app directory
+ */
+const resolvePathFromRoot = (relativePath) => (
+  path.resolve(rootDirectory, relativePath)
+);
 
 module.exports = {
   output: {
     // path: path.resolve(__dirname, "dist"),
-    path: resolveApp("dist"),
+    path: resolvePathFromRoot("dist"),
     publicPath: "/",
     chunkFilename: "[chunkhash]-[name].bundle.js",
     filename: "[hash]-[name].bundle.js"
@@ -88,7 +96,7 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      path: resolveApp(".env"),
+      path: resolvePathFromRoot(".env"),
       systemvars: true
     }),
     new CleanWebpackPlugin(),
