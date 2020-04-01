@@ -2,6 +2,12 @@
 
 ## Usage
 
+### With Docker
+
+1. `docker-compose up`
+
+### Outside of Docker
+
 1. `npm install`
 1. `cd package && npm install`
 1. `cd package && mpn run init:hydra`
