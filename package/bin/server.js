@@ -25,7 +25,7 @@ const server = new WebpackDevServer(webpack(config), options);
 
 console.log("Starting the dev web server...");
 
-server.listen(port, "localhost", (err) => {
+server.listen(port, "0.0.0.0", (err) => {
   if (err) {
     console.log(err);
   }
