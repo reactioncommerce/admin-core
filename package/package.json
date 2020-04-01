@@ -2,6 +2,19 @@
   "name": "@reactioncommerce/admin-core",
   "version": "0.0.0-development",
   "description": "Reaction admin core library",
+  "homepage": "https://github.com/reactioncommerce/admin-core",
+  "repository": "https://github.com/reactioncommerce/admin-core",
+  "author": {
+    "name": "Reaction Commerce",
+    "email": "engineering@reactioncommerce.com",
+    "url": "https://reactioncommerce.com"
+  },
+  "license": "Apache-2.0",
+  "private": false,
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "bin/reaction-plugin-build",
     "init:hydra": "node bin/create-hydra-client.js",
@@ -13,9 +26,6 @@
     "reaction": "./bin/server.js",
     "reaction-build": "./bin/reaction-plugin-build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@apollo/react-testing": "^3.1.3",
