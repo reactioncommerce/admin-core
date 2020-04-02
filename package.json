@@ -10,7 +10,10 @@
     "publish": "yalc publish --push",
     "hydra:init": "node ./package/bin/create-hydra-client.js",
     "lint": "eslint ./package/src",
-    "start": "./package/bin/server.js --port 8081"
+    "start": "./package/bin/server.js --port 8081",
+    "test": "jest ./package/src",
+    "test:watch": "jest --watch ./package/src",
+    "test:file": "jest --no-cache --watch"
   },
   "bin": {
     "reaction": "./package/bin/server.js",
