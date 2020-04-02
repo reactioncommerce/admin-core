@@ -20,7 +20,7 @@ jobs:
             - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
             - admin-core-v1-node-modules-{{ .Branch }}
       - run:
-          name: Install root NPM dependencies
+          name: Install NPM dependencies
           command: npm ci && (cd package && npm ci)
       - save_cache:
           key: admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
