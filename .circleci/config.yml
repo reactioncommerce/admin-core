@@ -17,22 +17,22 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - reaction-v3-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
-            - reaction-v3-node-modules-{{ .Branch }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+            - admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Install NPM dependencies
           command: npm ci && (cd package && npm ci)
       - save_cache:
-        key: reaction-v3-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-        paths:
-          - node_modules
+          key: admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
       - save_cache:
-          key: reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+          key: admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
           paths:
             - package/node_modules
       - save_cache:
-          key: reaction-v3-node-modules-{{ .Branch }}
+          key: admin-core-v1-node-modules-{{ .Branch }}
           paths:
             - package/node_modules
 
@@ -43,9 +43,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - reaction-v3-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
-            - reaction-v3-node-modules-{{ .Branch }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+            - admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Lint JavaScript
           command: npm run lint
@@ -57,9 +57,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - reaction-v3-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
-            - reaction-v3-node-modules-{{ .Branch }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+            - admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Run Unit Tests
           command: cd package && npm run test
