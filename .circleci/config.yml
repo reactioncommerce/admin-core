@@ -89,7 +89,7 @@ workflows:
             - install-dependencies
       - publish-npm-package:
           requires:
-            - lint
+            - eslint
             - test
           filters:
             branches:
