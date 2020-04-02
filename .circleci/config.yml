@@ -21,8 +21,11 @@ jobs:
             - admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
             - admin-core-v1-node-modules-{{ .Branch }}
       - run:
-          name: Install NPM dependencies
-          command: npm ci && (cd package && npm ci)
+          name: Install root NPM dependencies
+          command: npm ci
+      - run:
+          name: Install package NPM dependencies
+          command: cd package && npm ci
       - save_cache:
           key: admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
           paths:
