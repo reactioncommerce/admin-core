@@ -48,7 +48,7 @@ jobs:
             - reaction-v3-node-modules-{{ .Branch }}
       - run:
           name: Lint JavaScript
-          command: cd package && npm run lint
+          command: npm run lint
 
 
   test:
@@ -81,7 +81,7 @@ workflows:
   build_and_test:
     jobs:
       - install-dependencies
-      - lint:
+      - eslint:
           requires:
             - install-dependencies
       - test:
