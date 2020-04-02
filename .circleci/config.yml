@@ -34,6 +34,7 @@ jobs:
       - save_cache:
           key: admin-core-v1-node-modules-{{ .Branch }}
           paths:
+            - node_modules
             - package/node_modules
 
 
