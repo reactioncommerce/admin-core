@@ -62,7 +62,7 @@ jobs:
             - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Run Unit Tests
-          command: cd package && npm run test
+          command: npm run test
 
   publish-npm-package:
     <<: *defaults
