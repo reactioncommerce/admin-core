@@ -21,7 +21,7 @@ jobs:
             - reaction-v3-node-modules-{{ .Branch }}
       - run:
           name: Install NPM dependencies
-          command: (cd packages && npm ci)
+          command: cd package && npm ci
       - save_cache:
           key: reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
           paths:
