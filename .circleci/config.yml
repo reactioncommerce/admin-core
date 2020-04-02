@@ -17,22 +17,15 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-            - admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
             - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Install root NPM dependencies
-          command: npm ci
-      - run:
-          name: Install package NPM dependencies
-          command: cd package && npm ci
+          command: npm ci && (cd package && npm ci)
       - save_cache:
-          key: admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+          key: admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
           paths:
             - node_modules
-      - save_cache:
-          key: admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
-          paths:
             - package/node_modules
       - save_cache:
           key: admin-core-v1-node-modules-{{ .Branch }}
@@ -47,8 +40,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-            - admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
             - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Lint JavaScript
@@ -61,8 +53,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-            - admin-core-v1-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
             - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Run Unit Tests
