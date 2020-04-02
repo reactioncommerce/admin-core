@@ -9,6 +9,7 @@
     "bp": "npm run build && npm run publish",
     "publish": "yalc publish --push",
     "hydra:init": "node ./package/bin/create-hydra-client.js",
+    "lint": "eslint ./package/src",
     "start": "./package/bin/server.js --port 8081"
   },
   "bin": {
