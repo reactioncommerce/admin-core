@@ -4,20 +4,14 @@
   "description": "Reaction admin core library testing app",
   "main": "index.js",
   "scripts": {
-    "build": "./package/bin/reaction-plugin-build",
+    "build": "./package/bin/build-plugin",
     "build:app": "webpack --config ./package/config/webpack.prod.js",
     "bp": "npm run build && npm run publish",
-    "publish": "yalc publish --push",
-    "hydra:init": "node ./package/bin/create-hydra-client.js",
     "lint": "eslint ./package/src",
-    "start": "./package/bin/server.js --port 8081",
+    "start": "./package/bin/dev-server",
     "test": "jest ./package/src",
     "test:watch": "jest --watch ./package/src",
     "test:file": "jest --no-cache --watch"
-  },
-  "bin": {
-    "reaction": "./package/bin/server.js",
-    "reaction-build": "./package/bin/reaction-plugin-build"
   },
   "keywords": [],
   "author": "",
