@@ -8,9 +8,11 @@ rimraf dist-modules-temp
 # BABEL_ENV=production babel src --out-dir dist --root-mode upward
 BABEL_ENV=production BABEL_MODULES=1 babel --root-mode upward src --out-dir dist
 
-# Copy build scripts and config
+# Copy build scripts, config and other sources
 cp -r bin dist/bin
 cp -r config dist/config
+cp -r src/graphql dist/graphql
+cp -r src/test-utils dist/test-utils
 cp package.json dist/package.json
 cp README.md dist/README.md
 cp LICENSE dist/LICENSE
