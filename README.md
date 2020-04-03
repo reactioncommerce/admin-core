@@ -4,13 +4,13 @@
 
 ### With Docker
 
+1. `cp .env.example .env`
 1. `docker-compose up`
 
 ### Outside of Docker
 
-1. `npm install`
-1. `cd package && npm install`
-1. `cd package && mpn run init:hydra`
+1. `npm install && (cd package && npm install)`
+1. `cp .env.example .env`
 1. `npm start`
 
 ### Developer Certificate of Origin
