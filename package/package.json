@@ -16,12 +16,12 @@
     "access": "public"
   },
   "scripts": {
-    "build": "bin/reaction-plugin-build",
-    "init:hydra": "node bin/create-hydra-client.js"
+    "build": "bin/build-plugin"
   },
   "bin": {
-    "reaction": "./bin/server.js",
-    "reaction-build": "./bin/reaction-plugin-build"
+    "reaction-dev-server": "./bin/dev-server",
+    "reaction-build-plugin": "./bin/build-plugin",
+    "reaction-init-hydra": "./bin/init-hydra"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
@@ -73,7 +73,6 @@
     "html-loader": "~0.5.5",
     "html-webpack-plugin": "~3.2.0",
     "jest": "^25.1.0",
-    "minimist": "~1.2.5",
     "oidc-client": "~1.10.1",
     "prop-types": "^15.7.2",
     "raf": "^3.4.1",
