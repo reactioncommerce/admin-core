@@ -9,10 +9,10 @@ module.exports = {
     "graphql"
   ],
   setupFiles: [
-    "<rootDir>/config/test-polyfills.js"
+    "<rootDir>/node_modules/@reactioncommerce/admin-core/config/test-polyfills.js"
   ],
   setupFilesAfterEnv: [
-    "<rootDir>/src/test-utils/setupTests.js"
+    "<rootDir>/node_modules/@reactioncommerce/admin-core/test-utils/setupTests.js"
   ],
   testPathIgnorePatterns: [
     "<rootDir>/config/",

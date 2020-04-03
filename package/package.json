@@ -17,10 +17,7 @@
   },
   "scripts": {
     "build": "bin/reaction-plugin-build",
-    "init:hydra": "node bin/create-hydra-client.js",
-    "test": "jest ./src",
-    "test:watch": "jest --watch ./src",
-    "test:file": "jest --no-cache --watch --coverage=false"
+    "init:hydra": "node bin/create-hydra-client.js"
   },
   "bin": {
     "reaction": "./bin/server.js",

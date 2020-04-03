@@ -17,18 +17,20 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
-            - reaction-v3-node-modules-{{ .Branch }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
+            - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Install NPM dependencies
-          command: (cd packages && npm ci)
+          command: npm ci && (cd package && npm ci)
       - save_cache:
-          key: reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
+          key: admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
           paths:
+            - node_modules
             - package/node_modules
       - save_cache:
-          key: reaction-v3-node-modules-{{ .Branch }}
+          key: admin-core-v1-node-modules-{{ .Branch }}
           paths:
+            - node_modules
             - package/node_modules
 
 
@@ -38,11 +40,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
-            - reaction-v3-node-modules-{{ .Branch }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
+            - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Lint JavaScript
-          command: cd package && npm run lint
+          command: npm run lint
 
 
   test:
@@ -51,11 +53,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - reaction-v3-node-modules-{{ checksum "package/package.json" }}-{{ checksum "package/package-lock.json" }}
-            - reaction-v3-node-modules-{{ .Branch }}
+            - admin-core-v1-node-modules-{{ checksum "package.json" }}-{{ checksum "package/package.json" }}
+            - admin-core-v1-node-modules-{{ .Branch }}
       - run:
           name: Run Unit Tests
-          command: cd package && npm run test
+          command: npm run test
 
   publish-npm-package:
     <<: *defaults
@@ -74,7 +76,7 @@ workflows:
   build_and_test:
     jobs:
       - install-dependencies
-      - lint:
+      - eslint:
           requires:
             - install-dependencies
       - test:
@@ -82,7 +84,7 @@ workflows:
             - install-dependencies
       - publish-npm-package:
           requires:
-            - lint
+            - eslint
             - test
           filters:
             branches:
