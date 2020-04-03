@@ -69,7 +69,7 @@ jobs:
       - checkout
       - run: cd package && npm ci
       - run: cd package && npm run build
-      - run: cd package && npx semantic-release
+      - run: cd package/dist && npx semantic-release
 
 workflows:
   version: 2
