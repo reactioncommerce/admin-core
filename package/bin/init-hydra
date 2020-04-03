@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+/* eslint-disable node/shebang */
+const createHydraClient = require("../scripts/createHydraClient");
+
+/**
+ * Run command
+ * @returns {undefined}
+ */
+async function run() {
+  await createHydraClient();
+  // eslint-disable-next-line no-process-exit
+  process.exit(10);
+}
+
+run();
