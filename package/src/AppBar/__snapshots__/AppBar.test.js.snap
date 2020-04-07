@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render the AppBar with a title and children 1`] = `
+<DocumentFragment>
+  <header
+    class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary mui-fixed MuiPaper-elevation0"
+  >
+    <div
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-navigationDrawerOpen-2 MuiToolbar-gutters"
+    >
+      <h1
+        class="MuiTypography-root makeStyles-title-4 MuiTypography-h3"
+      >
+        Title
+      </h1>
+      <div
+        class="makeStyles-action-1"
+      >
+        <span>
+          Sub Component
+        </span>
+      </div>
+    </div>
+  </header>
+</DocumentFragment>
+`;
