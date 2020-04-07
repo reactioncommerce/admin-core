@@ -35,9 +35,15 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden"
   },
   leadingDrawerOpen: {
-    paddingLeft: theme.dimensions.drawerWidth
+    paddingLeft: theme.dimensions.drawerWidth + theme.spacing(2)
   },
   trailingDrawerOpen: {
+    paddingRight: theme.dimensions.detailDrawerWidth + theme.spacing(2)
+  },
+  leadingDrawerOpenFullLayout: {
+    paddingLeft: theme.dimensions.drawerWidth
+  },
+  trailingDrawerOpenFullLayout: {
     paddingRight: theme.dimensions.detailDrawerWidth
   }
 }));
@@ -55,8 +61,10 @@ const ContentLayout = ({
       className={
         clsx(classes.root, {
           [classes[`${size}Content`]]: true,
-          [classes.leadingDrawerOpen]: isLeadingDrawerOpen,
-          [classes.trailingDrawerOpen]: isTrailingDrawerOpen
+          [classes.leadingDrawerOpen]: isLeadingDrawerOpen && size !== "full",
+          [classes.trailingDrawerOpen]: isTrailingDrawerOpen && size !== "full",
+          [classes.leadingDrawerOpenFullLayout]: isLeadingDrawerOpen && size === "full",
+          [classes.trailingDrawerOpenFullLayout]: isTrailingDrawerOpen && size === "full"
         })
       }
     >
