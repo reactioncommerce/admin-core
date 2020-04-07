@@ -12,7 +12,7 @@ import { Blocks } from "../../../package/src";
  * @param {Object} params Params provided by `registerPlugin`
  * @returns {undefined}
  */
-export default function ({ registerRoute, registerBlock }) {
+export default function ({ registerRoute, registerSetting, registerBlock }) {
   // Register routes
   registerRoute({
     path: "/products",
@@ -29,6 +29,19 @@ export default function ({ registerRoute, registerBlock }) {
           ))
         }
       </Blocks>
+    )
+  });
+
+  // Register settings
+  registerSetting({
+    name: "products",
+    navigationItemLabel: "Products",
+    MainComponent: () => (
+      <Card>
+        <CardContent>
+          Product plugin settings
+        </CardContent>
+      </Card>
     )
   });
 

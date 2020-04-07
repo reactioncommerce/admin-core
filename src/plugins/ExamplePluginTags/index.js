@@ -9,7 +9,7 @@ import { Card, CardContent } from "@material-ui/core";
  * @param {Object} params Params provided by `registerPlugin`
  * @returns {undefined}
  */
-export default function ({ registerRoute, registerBlock }) {
+export default function ({ registerRoute, registerSetting, registerBlock }) {
   // Register routes
   registerRoute({
     path: "/tags",
@@ -20,6 +20,18 @@ export default function ({ registerRoute, registerBlock }) {
       <Card>
         <CardContent>
           Display Tags
+        </CardContent>
+      </Card>
+    )
+  });
+
+  registerSetting({
+    name: "tags",
+    navigationItemLabel: "Tags",
+    MainComponent: () => (
+      <Card>
+        <CardContent>
+          Setting for tags
         </CardContent>
       </Card>
     )
