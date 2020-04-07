@@ -1,22 +1,22 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react/no-multi-comp */
-import React from "react";
 import { Reaction, registerPlugin, App } from "../package/src";
 import config from "./config";
+import ExamplePluginProducts from "./plugins/ExamplePluginProducts";
+import ExamplePluginTags from "./plugins/ExamplePluginTags";
+import ExampleLayouts from "./plugins/ExampleLayouts";
 
-// Register fake plugins for testing
-registerPlugin(() => ({
-  route: "/test-1",
-  navTitle: "Test 1",
-  // eslint-disable-next-line react/display-name
-  MainComponent: () => (<span>Route Test 1</span>)
-}));
-
-registerPlugin(() => ({
-  route: "/test-2",
-  navTitle: "Test 2",
-  // eslint-disable-next-line react/display-name
-  MainComponent: () => (<span>Route Test 2</span>)
-}));
+/**
+ * Register plugins for testing.
+ *
+ * In a real application, plugins can either live locally in the project,
+ * or installed as NPM packages and registered here.
+ *
+ * For this sample application, the plugins are all local.
+ */
+registerPlugin(ExamplePluginProducts);
+registerPlugin(ExamplePluginTags);
+registerPlugin(ExampleLayouts);
 
 // Configure and "start" the Reaction webapp
 Reaction({
