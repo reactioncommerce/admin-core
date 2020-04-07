@@ -1,65 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should be true 1`] = `
+exports[`should render the Dashboard component with a single route 1`] = `
 <DocumentFragment>
   <div
-    class="MuiContainer-root MuiContainer-maxWidthLg"
+    class="makeStyles-container-1"
   >
+    <header
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary mui-fixed MuiPaper-elevation0"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <h1
+          class="MuiTypography-root makeStyles-title-6 MuiTypography-h3"
+        />
+        <div
+          class="makeStyles-action-3"
+        >
+          <button
+            class="MuiButtonBase-root"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
+              size="40"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiAvatar-fallback"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                />
+              </svg>
+            </div>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </div>
+    </header>
     <div
       class="MuiDrawer-root MuiDrawer-docked"
     >
       <div
         class="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0"
       >
+        <header
+          class="MuiPaper-root MuiAppBar-root MuiAppBar-positionSticky MuiAppBar-colorSecondary MuiPaper-elevation0"
+        >
+          <div
+            class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-106 MuiToolbar-gutters"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-125"
+            />
+          </div>
+        </header>
         <ul
-          class="MuiList-root MuiList-padding"
+          class="MuiList-root"
         >
           <div
             aria-disabled="false"
-            class="MuiButtonBase-root MuiListItem-root makeStyles-listItem-6 MuiListItem-gutters MuiListItem-button"
+            class="MuiButtonBase-root MuiListItem-root makeStyles-listItemRoot-107 MuiListItem-gutters MuiListItem-button makeStyles-listItemButton-109"
             role="button"
             tabindex="0"
           >
             <div
-              class="MuiListItemText-root makeStyles-listItemText-7"
-            >
-              Test 1
-            </div>
-            <span
-              class="MuiTouchRipple-root"
+              class="MuiListItemIcon-root makeStyles-icon-104"
             />
-          </div>
-          <div
-            aria-disabled="false"
-            class="MuiButtonBase-root MuiListItem-root makeStyles-listItem-6 MuiListItem-gutters MuiListItem-button"
-            role="button"
-            tabindex="0"
-          >
             <div
-              class="MuiListItemText-root makeStyles-listItemText-7"
-            >
-              Sign Out
-            </div>
+              class="MuiListItemText-root makeStyles-listItemText-108"
+            />
             <span
               class="MuiTouchRipple-root"
             />
           </div>
         </ul>
       </div>
-    </div>
-    <div
-      style="padding-left: 320px;"
-    >
-      <h1
-        class="MuiTypography-root MuiTypography-h1"
-      >
-        Test App
-      </h1>
-      <h2
-        class="MuiTypography-root MuiTypography-h2"
-      >
-        Welcome 
-      </h2>
     </div>
   </div>
 </DocumentFragment>
