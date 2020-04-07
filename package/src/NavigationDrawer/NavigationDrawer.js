@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
-import PropTypes from "prop-types";
 import {
   AppBar,
   Box,
@@ -17,6 +16,7 @@ import {
 import CloseIcon from "mdi-material-ui/Close";
 import { useTranslation } from "react-i18next";
 import ShopLogo from "../ShopLogo";
+import UIContext from "../context/UIContext";
 import useRoutes from "../hooks/useRoutes";
 
 const useStyles = makeStyles((theme) => ({
@@ -82,23 +82,19 @@ const useStyles = makeStyles((theme) => ({
 
 /**
  * Navigation Drawer component
- * @param {Object} props Component props
  * @returns {React.Component} NavigationDrawer component
  */
-function NavigationDrawer(props) {
-  const {
-    isMobile,
-    isNavigationDrawerOpen,
-    onDrawerClose,
-    setIsSettingsOpen
-  } = props;
-
+function NavigationDrawer() {
   const classes = useStyles();
   const history = useHistory();
   const routeMatch = useRouteMatch("/:any");
   const primaryRoutes = useRoutes({ groups: ["navigation"] });
   const { t } = useTranslation();
-
+  const {
+    isMobile,
+    isNavigationDrawerOpen,
+    onCloseNavigationDrawer
+  } = useContext(UIContext);
 
   let drawerProps = {
     classes: {
@@ -113,7 +109,7 @@ function NavigationDrawer(props) {
       variant: "temporary",
       anchor: "left",
       open: isNavigationDrawerOpen,
-      onClose: onDrawerClose,
+      onClose: onCloseNavigationDrawer,
       ModalProps: {
         keepMounted: true // Better open performance on mobile.
       }
@@ -133,7 +129,7 @@ function NavigationDrawer(props) {
           </Box>
 
           <Hidden mdUp>
-            <Fab classes={{ root: classes.closeButton }} onClick={onDrawerClose} size="small">
+            <Fab classes={{ root: classes.closeButton }} onClick={onCloseNavigationDrawer} size="small">
               <CloseIcon />
             </Fab>
           </Hidden>
@@ -156,11 +152,10 @@ function NavigationDrawer(props) {
               button: classes.listItemButton
             }}
             key={path}
-            selected={(href && href.startsWith(routeMatch.url)) || path.startsWith(routeMatch.url)}
+            selected={routeMatch && ((href && href.startsWith(routeMatch.url)) || path.startsWith(routeMatch.url))}
             onClick={() => {
               history.push(href || path);
-              setIsSettingsOpen(false);
-              onDrawerClose();
+              onCloseNavigationDrawer();
             }}
           >
             <ListItemIcon className={classes.icon}>
@@ -178,20 +173,5 @@ function NavigationDrawer(props) {
     </Drawer>
   );
 }
-
-NavigationDrawer.propTypes = {
-  classes: PropTypes.object,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }),
-  isMobile: PropTypes.bool,
-  isNavigationDrawerOpen: PropTypes.bool.isRequired,
-  onDrawerClose: PropTypes.func.isRequired,
-  setIsSettingsOpen: PropTypes.func.isRequired
-};
-
-NavigationDrawer.defaultProps = {
-  setIsNavigationDrawerOpen() { }
-};
 
 export default NavigationDrawer;
