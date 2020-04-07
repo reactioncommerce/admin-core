@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import PropTypes from "prop-types";
 import { ThemeProvider } from "@material-ui/core";
 import { defaultTheme } from "@reactioncommerce/catalyst";
@@ -24,20 +24,22 @@ function App(props) {
   const DashboardComponent = DashboardComponentProp || Dashboard;
 
   return (
-    <ApolloProvider client={apolloClient}>
-      <BrowserRouter>
-        <AuthenticationProvider {...authenticationProviderProps}>
-          <ThemeProvider theme={defaultTheme}>
-            <OidcSecure>
-              <DashboardComponent
-                {...dashboardComponentProps}
-                plugins={plugins}
-              />
-            </OidcSecure>
-          </ThemeProvider>
-        </AuthenticationProvider>
-      </BrowserRouter>
-    </ApolloProvider>
+    <Suspense fallback={null}>
+      <ApolloProvider client={apolloClient}>
+        <BrowserRouter>
+          <AuthenticationProvider {...authenticationProviderProps}>
+            <ThemeProvider theme={defaultTheme}>
+              <OidcSecure>
+                <DashboardComponent
+                  {...dashboardComponentProps}
+                  plugins={plugins}
+                />
+              </OidcSecure>
+            </ThemeProvider>
+          </AuthenticationProvider>
+        </BrowserRouter>
+      </ApolloProvider>
+    </Suspense>
   );
 }
 

@@ -1,3 +1,6 @@
+import { registerRoute, registerSetting } from "./routes";
+import { registerBlock, replaceBlock } from "./blocks";
+
 export const plugins = [];
 
 /**
@@ -6,5 +9,10 @@ export const plugins = [];
  * @returns {undefined} no return
  */
 export function registerPlugin(plugin) {
-  plugins.push(plugin());
+  plugins.push(plugin({
+    registerRoute,
+    registerSetting,
+    registerBlock,
+    replaceBlock
+  }));
 }

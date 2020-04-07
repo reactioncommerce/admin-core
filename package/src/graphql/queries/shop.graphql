@@ -1,0 +1,29 @@
+query getShop($id: ID!) {
+  shop(id: $id) {
+    _id
+    brandAssets {
+      navbarBrandImageId
+      navbarBrandImage {
+        large
+      }
+    }
+    defaultParcelSize {
+      height
+      length
+      weight
+      width
+    }
+    language
+    name
+    shopLogoUrls {
+      primaryShopLogoUrl
+    }
+    storefrontUrls {
+      storefrontHomeUrl
+      storefrontLoginUrl
+      storefrontOrderUrl
+      storefrontOrdersUrl
+      storefrontAccountProfileUrl
+    }
+  }
+}

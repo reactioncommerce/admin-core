@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 
@@ -21,7 +22,6 @@ const resolvePathFromRoot = (relativePath) => (
 
 module.exports = {
   output: {
-    // path: path.resolve(__dirname, "dist"),
     path: resolvePathFromRoot("dist"),
     publicPath: "/",
     chunkFilename: "[chunkhash]-[name].bundle.js",
@@ -99,6 +99,9 @@ module.exports = {
       systemvars: true
     }),
     new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([
+      { from: "public" }
+    ]),
     new HtmlWebPackPlugin({
       template: "./src/index.html"
     })

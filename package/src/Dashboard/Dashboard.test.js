@@ -1,5 +1,9 @@
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-multi-comp */
 import React from "react";
 import { render } from "../test-utils";
+import { registerRoute } from "../lib/core/routes";
 import Dashboard from "./Dashboard";
 
 jest.mock("../hooks/useAuth", () => ({
@@ -12,21 +16,21 @@ jest.mock("../hooks/useAuth", () => ({
   })
 }));
 
-const mockPlugins = [
-  {
-    route: "/test-1",
-    navTitle: "Test 1",
-    // eslint-disable-next-line react/display-name
-    MainComponent: () => (<span>Route Test 1</span>)
-  }
-];
+jest.mock("../ShopLogo", () => ({
+  __esModule: true,
+  default: () => null
+}));
 
-test("should be true", () => {
+registerRoute({
+  group: "navigation",
+  path: "/test",
+  navigationItemTitle: "Test",
+  MainComponent: () => (<span>Main Component</span>)
+});
+
+test("should render the Dashboard component with a single route", () => {
   const { asFragment } = render((
-    <Dashboard
-      title="Test App"
-      plugins={mockPlugins}
-    />
+    <Dashboard />
   ));
   expect(asFragment()).toMatchSnapshot();
 });
