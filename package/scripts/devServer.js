@@ -27,7 +27,6 @@ const options = {
   hot: true,
   inline: true,
   open: true,
-  contentBase: "build",
   stats: { colors: true },
   historyApiFallback: true
 };
