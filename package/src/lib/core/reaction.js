@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import SettingsIcon from "mdi-material-ui/Settings";
 import initApollo from "../graphql/initApollo";
+import SettingsDashboard from "../SettingsDashboard";
 import { getOidcProps } from "./authentication";
 import { plugins } from "./plugins";
+import { registerRoute } from "./routes";
 import { initI18next } from "./i18n";
 import { loadRegisteredBlocks } from "./blocks";
 
@@ -21,7 +24,10 @@ export function Reaction(props) {
     },
     AppComponent,
     DashboardComponent,
-    dashboardComponentProps
+    SettingsDashboardComponent = SettingsDashboard,
+    dashboardComponentProps,
+    settingsRouteProps,
+    shouldShowSettingsInNavigation = true
   } = props;
 
   // Initialize apollo client to be used for the ApolloProvider in the AppComponent
@@ -32,6 +38,20 @@ export function Reaction(props) {
 
   // Load registered blocks
   loadRegisteredBlocks();
+
+  if (shouldShowSettingsInNavigation) {
+    registerRoute({
+      group: "navigation",
+      priority: 9999,
+      path: "/settings/:setting?",
+      href: "/settings/shop",
+      LayoutComponent: null,
+      MainComponent: SettingsDashboardComponent,
+      IconComponent: SettingsIcon,
+      navigationItemLabel: "admin.settings.settingsLabel",
+      ...settingsRouteProps
+    });
+  }
 
   // Create OIDC props to be used on the AuthenticationProvider in the AppComponent
   const authenticationProviderProps = getOidcProps({
