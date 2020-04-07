@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import initApollo from "../graphql/initApollo";
 import { getOidcProps } from "./authentication";
 import { plugins } from "./plugins";
+import { initI18next } from "./i18n";
+import { loadRegisteredBlocks } from "./blocks";
 
 /**
  * The starting point for the web-app
@@ -24,6 +26,12 @@ export function Reaction(props) {
 
   // Initialize apollo client to be used for the ApolloProvider in the AppComponent
   const apolloClient = initApollo({ graphqlApiUrl: PUBLIC_GRAPHQL_API_URL });
+
+  // Init i18next
+  initI18next();
+
+  // Load registered blocks
+  loadRegisteredBlocks();
 
   // Create OIDC props to be used on the AuthenticationProvider in the AppComponent
   const authenticationProviderProps = getOidcProps({
