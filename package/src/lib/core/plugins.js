@@ -1,4 +1,4 @@
-import { registerRoute } from "./routes";
+import { registerRoute, registerSetting } from "./routes";
 import { registerBlock, replaceBlock } from "./blocks";
 
 export const plugins = [];
@@ -11,6 +11,7 @@ export const plugins = [];
 export function registerPlugin(plugin) {
   plugins.push(plugin({
     registerRoute,
+    registerSetting,
     registerBlock,
     replaceBlock
   }));
