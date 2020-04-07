@@ -6,7 +6,25 @@ import { ThemeProvider } from "@material-ui/core";
 import { MemoryRouter } from "react-router-dom";
 import { MockedProvider } from "@apollo/react-testing";
 import { defaultTheme } from "@reactioncommerce/catalyst";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 import apolloMocks from "./apolloMocks";
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: {}
+      }
+    },
+    lng: "en",
+    fallbackLng: "en",
+
+    interpolation: {
+      escapeValue: false
+    }
+  });
 
 /**
  * Component that wraps components with mock providers during testing.
