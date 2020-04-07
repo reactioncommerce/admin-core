@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "../AppBar";
@@ -81,13 +80,5 @@ function Dashboard() {
     </UIContext.Provider>
   );
 }
-
-Dashboard.propTypes = {
-  classes: PropTypes.object,
-  location: PropTypes.object,
-  logout: PropTypes.func,
-  viewer: PropTypes.object,
-  width: PropTypes.string
-};
 
 export default Dashboard;
