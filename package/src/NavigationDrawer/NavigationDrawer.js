@@ -76,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.colors.darkBlue600
     }
   },
+  /* Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
+  focusVisible: {},
   /* Pseudo-class applied to the root element if `selected={true}`. */
   selected: {}
 }));
