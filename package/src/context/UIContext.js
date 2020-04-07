@@ -1,13 +1,13 @@
 import { createContext } from "react";
 
-export const UIContext = createContext({
+export default createContext({
   isDetailDrawerOpen: false,
   isMobile: false,
-  isPrimarySidebarOpen: true,
+  isNavigationDrawerOpen: true,
   onCloseDetailDrawer: () => { },
-  onClosePrimarySidebar: () => { },
+  onCloseNavigationDrawer: () => { },
   onToggleDetailDrawer: () => { },
-  onTogglePrimarySidebar: () => { },
+  onToggleNavigationDrawer: () => { },
   setDetailDrawerOpen: () => { },
-  setPrimarySidebarOpen: () => { }
+  setNavigationDrawerOpen: () => { }
 });

@@ -5,7 +5,7 @@ import AppBar from "../AppBar";
 import ProfileMenu from "../ProfileMenu";
 import NavigationDrawer from "../NavigationDrawer";
 import Routes from "../Routes";
-import { UIContext } from "../context/UIContext";
+import UIContext from "../context/UIContext";
 import useMediaQuery from "../hooks/useMediaQuery";
 import useRoutes from "../hooks/useRoutes";
 
@@ -27,10 +27,10 @@ function Dashboard() {
   const isMobile = useMediaQuery("mobile");
   const routes = useRoutes();
   const [isDetailDrawerOpen, setDetailDrawerOpen] = useState(false);
-  const [isPrimarySidebarOpen, setPrimarySidebarOpen] = useState(true);
+  const [isNavigationDrawerOpen, setNavigationDrawerOpen] = useState(false);
 
-  const onTogglePrimarySidebar = () => {
-    setPrimarySidebarOpen((prevValue) => !prevValue);
+  const onToggleNavigationDrawer = () => {
+    setNavigationDrawerOpen((prevValue) => !prevValue);
   };
 
   const onToggleDetailDrawer = () => {
@@ -41,21 +41,21 @@ function Dashboard() {
     setDetailDrawerOpen(false);
   };
 
-  const onClosePrimarySidebar = () => {
-    setPrimarySidebarOpen(false);
+  const onCloseNavigationDrawer = () => {
+    setNavigationDrawerOpen(false);
   };
 
   const contextValue = useMemo(() => ({
     isDetailDrawerOpen,
     isMobile,
-    isPrimarySidebarOpen: (isMobile && isPrimarySidebarOpen) || true,
-    onClosePrimarySidebar,
-    onTogglePrimarySidebar,
+    isNavigationDrawerOpen: (isMobile && isNavigationDrawerOpen) || isNavigationDrawerOpen,
+    onCloseNavigationDrawer,
+    onToggleNavigationDrawer,
     onCloseDetailDrawer,
     onToggleDetailDrawer,
     setDetailDrawerOpen,
-    setPrimarySidebarOpen
-  }), [isDetailDrawerOpen, isMobile, isPrimarySidebarOpen]);
+    setNavigationDrawerOpen
+  }), [isDetailDrawerOpen, isMobile, isNavigationDrawerOpen]);
 
   return (
     <UIContext.Provider value={contextValue}>
@@ -64,14 +64,7 @@ function Dashboard() {
         <AppBar>
           <ProfileMenu size={40} />
         </AppBar>
-        <NavigationDrawer
-          isMobile={isMobile}
-          isSidebarOpen={isPrimarySidebarOpen}
-          setIsSidebarOpen={(value) => {
-            setPrimarySidebarOpen(value);
-          }}
-          onDrawerClose={onClosePrimarySidebar}
-        />
+        <NavigationDrawer />
         <Routes
           isExactMatch={true}
           routes={routes}
