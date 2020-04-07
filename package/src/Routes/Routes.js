@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import Helmet from "react-helmet";
 import i18next from "i18next";
-import { UIContext } from "../context/UIContext";
+import UIContext from "../context/UIContext";
 import useMediaQuery from "../hooks/useMediaQuery";
 import ContentLayout from "../ContentLayout";
 
