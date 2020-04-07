@@ -15,10 +15,12 @@ import { loadRegisteredBlocks } from "./blocks";
  * @param {Object} props Props and config for the app
  * @returns {undefined} no return
  */
-export function Reaction(props) {
+export async function Reaction(props) {
   const {
     config: {
       PUBLIC_GRAPHQL_API_URL,
+      PUBLIC_I18N_BASE_URL,
+      PUBLIC_I18N_FALLBACK_LANGUAGE,
       PUBLIC_OIDC_CLIENT_ID,
       PUBLIC_OIDC_URL,
       PUBLIC_ROOT_URL
@@ -35,7 +37,10 @@ export function Reaction(props) {
   const apolloClient = initApollo({ graphqlApiUrl: PUBLIC_GRAPHQL_API_URL });
 
   // Init i18next
-  initI18next();
+  await initI18next({
+    i18nBaseUrl: PUBLIC_I18N_BASE_URL,
+    fallbackLng: PUBLIC_I18N_FALLBACK_LANGUAGE
+  });
 
   // Load registered blocks
   loadRegisteredBlocks();
