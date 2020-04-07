@@ -45,9 +45,9 @@ function ProfileMenu(props) {
             history.push("/profile");
           }}
         >
-          {i18next.t("profileLabel")}
+          {i18next.t("admin.userAccountDropdown.profileLabel")}
         </MenuItem>
-        <MenuItem onClick={logout}>{i18next.t("signOut")}</MenuItem>
+        <MenuItem onClick={logout}>{i18next.t("accountsUI.signOut")}</MenuItem>
       </Menu>
     </Fragment>
   );
