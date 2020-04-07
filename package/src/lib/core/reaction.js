@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import SettingsIcon from "mdi-material-ui/Settings";
 import initApollo from "../graphql/initApollo";
 import SettingsDashboard from "../SettingsDashboard";
+import Profile from "../../Profile";
 import { getOidcProps } from "./authentication";
 import { plugins } from "./plugins";
 import { registerRoute } from "./routes";
@@ -52,6 +53,12 @@ export function Reaction(props) {
       ...settingsRouteProps
     });
   }
+
+  // Register a profile page
+  registerRoute({
+    path: "/profile",
+    MainComponent: Profile
+  });
 
   // Create OIDC props to be used on the AuthenticationProvider in the AppComponent
   const authenticationProviderProps = getOidcProps({
