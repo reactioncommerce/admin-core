@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   AppBar,
@@ -18,8 +18,6 @@ import CloseIcon from "mdi-material-ui/Close";
 import { useTranslation } from "react-i18next";
 import ShopLogo from "../ShopLogo";
 import useRoutes from "../hooks/useRoutes";
-
-const activeClassName = "nav-item-active";
 
 const useStyles = makeStyles((theme) => ({
   closeButton: {
@@ -47,12 +45,21 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2)
   },
-  listItem: {
+  listItemRoot: {
     "paddingLeft": theme.spacing(2),
     "paddingRight": theme.spacing(2),
-    "&:hover": {
-      backgroundColor: theme.palette.colors.darkBlue600,
-      transition: `background-color ${theme.transitions.duration.shortest} ${theme.transitions.easing.easeInOut}`
+    "&$focusVisible": {
+      color: theme.palette.text.secondaryActive,
+      fontWeight: theme.typography.fontWeightSemiBold,
+      backgroundColor: theme.palette.colors.darkBlue600
+    },
+    "&$selected, &$selected:hover": {
+      color: theme.palette.text.secondaryActive,
+      fontWeight: theme.typography.fontWeightSemiBold,
+      backgroundColor: theme.palette.colors.darkBlue600
+    },
+    "&$selected $icon, &$selected:hover $icon": {
+      color: theme.palette.text.active
     }
   },
   listItemText: {
@@ -62,24 +69,15 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: 0.5,
     color: theme.palette.colors.black15
   },
-  listItemNested: {
-    "paddingTop": 0,
-    "paddingBottom": 0,
-    "paddingLeft": theme.spacing(8),
+  listItemButton: {
+    "borderRadius": theme.shape.borderRadius,
     "&:hover": {
-      backgroundColor: theme.palette.colors.darkBlue600,
-      transition: `background-color ${theme.transitions.duration.shortest} ${theme.transitions.easing.easeInOut}`
+      textDecoration: "none",
+      backgroundColor: theme.palette.colors.darkBlue600
     }
   },
-  link: {
-    [`&.${activeClassName} span`]: {
-      color: theme.palette.text.secondaryActive,
-      fontWeight: theme.typography.fontWeightSemiBold
-    },
-    [`&.${activeClassName} $icon`]: {
-      color: theme.palette.text.active
-    }
-  }
+  /* Pseudo-class applied to the root element if `selected={true}`. */
+  selected: {}
 }));
 
 /**
@@ -97,8 +95,10 @@ function NavigationDrawer(props) {
 
   const classes = useStyles();
   const history = useHistory();
+  const routeMatch = useRouteMatch("/:any");
   const primaryRoutes = useRoutes({ groups: ["navigation"] });
   const { t } = useTranslation();
+
 
   let drawerProps = {
     classes: {
@@ -141,26 +141,36 @@ function NavigationDrawer(props) {
         </Toolbar>
       </AppBar>
       <List disablePadding>
-        {primaryRoutes.map((route) => (
-
+        {primaryRoutes.map(({
+          IconComponent,
+          href,
+          path,
+          navigationItemLabel
+        }) => (
           <ListItem
             button
             className={classes.listItem}
-            key={route.path}
+            classes={{
+              root: classes.listItemRoot,
+              selected: classes.selected,
+              button: classes.listItemButton
+            }}
+            key={path}
+            selected={(href && href.startsWith(routeMatch.url)) || path.startsWith(routeMatch.url)}
             onClick={() => {
-              history.push(route.href || route.path);
+              history.push(href || path);
               setIsSettingsOpen(false);
               onDrawerClose();
             }}
           >
             <ListItemIcon className={classes.icon}>
-              {route.IconComponent && <route.IconComponent />}
+              {IconComponent && <IconComponent />}
             </ListItemIcon>
             <ListItemText
               disableTypography
               className={classes.listItemText}
             >
-              {t(route.navigationItemLabel)}
+              {t(navigationItemLabel)}
             </ListItemText>
           </ListItem>
         ))}
@@ -185,19 +195,3 @@ NavigationDrawer.defaultProps = {
 };
 
 export default NavigationDrawer;
-
-/*
-
-          <NavLink
-            activeClassName={activeClassName}
-            className={classes.link}
-            to={route.href || route.path}
-            key={route.path}
-            onClick={() => {
-              setIsSettingsOpen(false);
-              onDrawerClose();
-            }}
-          >
-          </NavLink>
-
-*/
