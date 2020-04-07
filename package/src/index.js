@@ -14,4 +14,4 @@ export { default as NavigationDrawer } from "./NavigationDrawer";
 export { default as ProfileMenu } from "./ProfileMenu";
 export { default as Routes } from "./Routes";
 export { default as ShopLogo } from "./ShopLogo";
-export { UIContext } from "./context/UIContext";
+export { default as UIContext } from "./context/UIContext";
