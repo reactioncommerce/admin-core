@@ -15,7 +15,7 @@ import {
 } from "@material-ui/core";
 import ChevronDownIcon from "mdi-material-ui/ChevronDown";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { UIContext } from "../context/UIContext";
+import UIContext from "../context/UIContext";
 import Blocks from "../Blocks";
 
 const useStyles = makeStyles((theme) => ({
