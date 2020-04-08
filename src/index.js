@@ -5,6 +5,7 @@ import config from "./config";
 import ExamplePluginProducts from "./plugins/ExamplePluginProducts";
 import ExamplePluginTags from "./plugins/ExamplePluginTags";
 import ExampleLayouts from "./plugins/ExampleLayouts";
+import ExampleSnackbars from "./plugins/ExampleSnackbars";
 
 /**
  * Register plugins for testing.
@@ -17,6 +18,7 @@ import ExampleLayouts from "./plugins/ExampleLayouts";
 registerPlugin(ExamplePluginProducts);
 registerPlugin(ExamplePluginTags);
 registerPlugin(ExampleLayouts);
+registerPlugin(ExampleSnackbars);
 
 // Configure and "start" the Reaction webapp
 Reaction({
