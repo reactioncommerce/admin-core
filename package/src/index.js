@@ -1,7 +1,10 @@
-// Export API
+// Export internal API
 export { getOidcProps } from "./lib/core/authentication";
 export { plugins, registerPlugin } from "./lib/core/plugins";
 export { Reaction } from "./lib/core/reaction";
+
+// Export APIs from other packages
+export * from "notistack";
 
 // Export React components
 export { default as App } from "./App";

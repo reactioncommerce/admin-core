@@ -90,7 +90,7 @@ function ContentLayoutTwoColumn(props) {
   } = props;
 
   const classes = useStyles();
-  const { isPrimarySidebarOpen, isDetailDrawerOpen } = useContext(UIContext);
+  const { isNavigationDrawerOpen, isDetailDrawerOpen } = useContext(UIContext);
   const isMobile = useMediaQuery("mobile");
 
   const closeDrawer = () => {
@@ -101,7 +101,7 @@ function ContentLayoutTwoColumn(props) {
     <div
       className={
         clsx(classes.root, {
-          [classes.leadingDrawerOpen]: isPrimarySidebarOpen && !isMobile,
+          [classes.leadingDrawerOpen]: isNavigationDrawerOpen && !isMobile,
           [classes.trailingDrawerOpen]: isDetailDrawerOpen && !isMobile
         })
       }

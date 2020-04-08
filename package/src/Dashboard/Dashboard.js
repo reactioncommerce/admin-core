@@ -48,7 +48,7 @@ function Dashboard() {
   const contextValue = useMemo(() => ({
     isDetailDrawerOpen,
     isMobile,
-    isNavigationDrawerOpen: (isMobile && isNavigationDrawerOpen) || isNavigationDrawerOpen,
+    isNavigationDrawerOpen: (isMobile && isNavigationDrawerOpen) || !isMobile,
     onCloseNavigationDrawer,
     onToggleNavigationDrawer,
     onCloseDetailDrawer,

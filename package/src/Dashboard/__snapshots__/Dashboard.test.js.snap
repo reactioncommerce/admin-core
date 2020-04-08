@@ -9,7 +9,7 @@ exports[`should render the Dashboard component with a single route 1`] = `
       class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary mui-fixed MuiPaper-elevation0"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+        class="MuiToolbar-root MuiToolbar-regular makeStyles-navigationDrawerOpen-4 MuiToolbar-gutters"
       >
         <h1
           class="MuiTypography-root makeStyles-title-6 MuiTypography-h3"
@@ -73,7 +73,19 @@ exports[`should render the Dashboard component with a single route 1`] = `
           >
             <div
               class="MuiListItemIcon-root makeStyles-icon-104"
-            />
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z"
+                />
+              </svg>
+            </div>
             <div
               class="MuiListItemText-root makeStyles-listItemText-108"
             />

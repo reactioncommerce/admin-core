@@ -15,6 +15,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "mdi-material-ui/Close";
 import { useTranslation } from "react-i18next";
+import FolderIcon from "mdi-material-ui/Folder";
 import ShopLogo from "../ShopLogo";
 import UIContext from "../context/UIContext";
 import useRoutes from "../hooks/useRoutes";
@@ -161,7 +162,7 @@ function NavigationDrawer() {
             }}
           >
             <ListItemIcon className={classes.icon}>
-              {IconComponent && <IconComponent />}
+              {(IconComponent && <IconComponent />) || <FolderIcon />}
             </ListItemIcon>
             <ListItemText
               disableTypography
