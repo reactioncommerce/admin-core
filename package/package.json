@@ -80,6 +80,7 @@
     "i18next-multiload-backend-adapter": "^1.0.0",
     "i18next-sprintf-postprocessor": "^0.2.2",
     "jest": "^25.1.0",
+    "notistack": "^0.9.9",
     "oidc-client": "~1.10.1",
     "prop-types": "^15.7.2",
     "raf": "^3.4.1",
