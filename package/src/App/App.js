@@ -5,6 +5,7 @@ import { defaultTheme } from "@reactioncommerce/catalyst";
 import { BrowserRouter } from "react-router-dom";
 import { AuthenticationProvider, OidcSecure } from "@axa-fr/react-oidc-context";
 import { ApolloProvider } from "react-apollo";
+import { SnackbarProvider } from "notistack";
 import Dashboard from "../Dashboard";
 
 /**
@@ -18,10 +19,20 @@ function App(props) {
     apolloClient,
     authenticationProviderProps,
     dashboardComponentProps,
-    plugins
+    plugins,
+    snackbarProviderProps: snackbarProps
   } = props;
 
   const DashboardComponent = DashboardComponentProp || Dashboard;
+
+  const snackbarProviderProps = {
+    maxSnack: 3,
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "center"
+    },
+    ...snackbarProps
+  };
 
   return (
     <Suspense fallback={null}>
@@ -29,12 +40,14 @@ function App(props) {
         <BrowserRouter>
           <AuthenticationProvider {...authenticationProviderProps}>
             <ThemeProvider theme={defaultTheme}>
-              <OidcSecure>
-                <DashboardComponent
-                  {...dashboardComponentProps}
-                  plugins={plugins}
-                />
-              </OidcSecure>
+              <SnackbarProvider {...snackbarProviderProps}>
+                <OidcSecure>
+                  <DashboardComponent
+                    {...dashboardComponentProps}
+                    plugins={plugins}
+                  />
+                </OidcSecure>
+              </SnackbarProvider>
             </ThemeProvider>
           </AuthenticationProvider>
         </BrowserRouter>
@@ -48,7 +61,8 @@ App.propTypes = {
   apolloClient: PropTypes.object,
   authenticationProviderProps: PropTypes.object,
   dashboardComponentProps: PropTypes.object,
-  plugins: PropTypes.arrayOf(PropTypes.object)
+  plugins: PropTypes.arrayOf(PropTypes.object),
+  snackbarProviderProps: PropTypes.object
 };
 
 export default App;
