@@ -30,7 +30,8 @@ export async function Reaction(props) {
     SettingsDashboardComponent = SettingsDashboard,
     dashboardComponentProps,
     settingsRouteProps,
-    shouldShowSettingsInNavigation = true
+    shouldShowSettingsInNavigation = true,
+    snackbarProviderProps
   } = props;
 
   // Initialize apollo client to be used for the ApolloProvider in the AppComponent
@@ -80,6 +81,7 @@ export async function Reaction(props) {
         authenticationProviderProps={authenticationProviderProps}
         dashboardComponentProps={dashboardComponentProps}
         plugins={plugins}
+        snackbarProviderProps={snackbarProviderProps}
       />
     ), document.getElementById("app")
   );
