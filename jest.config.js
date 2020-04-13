@@ -3,9 +3,9 @@ const config = require("./package/config/jest.config");
 module.exports = {
   ...config,
   setupFiles: [
-    "<rootDir>/package/config/test-polyfills.js"
+    "<rootDir>/package/scripts/testPolyfills.js"
   ],
   setupFilesAfterEnv: [
-    "<rootDir>/package/src/test-utils/setupTests.js"
+    "<rootDir>/package/scripts/setupTests.js"
   ]
 };
