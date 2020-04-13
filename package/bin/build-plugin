@@ -13,7 +13,6 @@ cp -r bin dist
 cp -r config dist
 cp -r scripts dist
 cp -r src/graphql dist
-cp -r src/test-utils dist
 cp package.json dist
 cp README.md dist
 cp LICENSE dist
