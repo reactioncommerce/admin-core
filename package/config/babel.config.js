@@ -73,7 +73,7 @@ module.exports = function (api) {
   ];
 
   let ignore;
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.BABEL_ENV === "production") {
     ignore = [
       "**/*.test.js",
       "__snapshots__",

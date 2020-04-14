@@ -1,7 +1,5 @@
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
-// Polyfill fetch
-import "unfetch/polyfill";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
