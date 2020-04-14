@@ -36,7 +36,7 @@ export function registerRoute(route) {
  * @returns {undefined}
  */
 export function registerSetting(route) {
-  routes.push({
+  registerRoute({
     ...route,
     path: `/settings/${route.name}`,
     href: `/settings/${route.name || route.href || route.path}`,
