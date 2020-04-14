@@ -9,17 +9,18 @@ module.exports = {
     "graphql"
   ],
   setupFiles: [
-    "<rootDir>/node_modules/@reactioncommerce/admin-core/config/test-polyfills.js"
+    "<rootDir>/node_modules/@reactioncommerce/admin-core/scripts/testPolyfills.js"
   ],
   setupFilesAfterEnv: [
-    "<rootDir>/node_modules/@reactioncommerce/admin-core/test-utils/setupTests.js"
+    "<rootDir>/node_modules/@reactioncommerce/admin-core/scripts/setupTests.js"
   ],
   testPathIgnorePatterns: [
     "<rootDir>/config/",
     "<rootDir>/reports/",
     "<rootDir>/bin/",
     "<rootDir>/dist/",
-    "<rootDir>/node_modules/"
+    "<rootDir>/node_modules/",
+    "<rootDir>/package/dist/"
   ],
   transform: {
     "\\.(gql|graphql)$": "@jagi/jest-transform-graphql",
